@@ -1,0 +1,27 @@
+digraph G {
+  rankdir=TB; nodesep=0.6; ranksep=0.9;
+  node [shape=record, fontname="Helvetica", fontsize=11, style=filled, fillcolor="#FFFFFF"];
+  edge [fontname="Helvetica", fontsize=10];
+
+  Shape [label="{«abstract»\nShape|# renderer : Renderer|+ draw() : void\l+ name() : String\l}", fillcolor="#DCE9FF"];
+  Circle [label="{Circle|- centerX, centerY, radius : int|+ draw() : void\l+ name() : String\l}", fillcolor="#DCE9FF"];
+  Square [label="{Square|- x, y, side : int|+ draw() : void\l+ name() : String\l}", fillcolor="#DCE9FF"];
+
+  Renderer [label="{«interface»\nRenderer|+ drawCircle(cx, cy, r) : void\l+ drawRectangle(x, y, w, h) : void\l+ result() : String\l}", fillcolor="#FFE9CC"];
+  Vector [label="{VectorRenderer|- elements : List\<String\>|+ drawCircle(...) : void\l+ drawRectangle(...) : void\l+ result() : String\l}", fillcolor="#FFE9CC"];
+  Raster [label="{RasterRenderer|- pixels : char[][]|+ drawCircle(...) : void\l+ drawRectangle(...) : void\l+ result() : String\l}", fillcolor="#FFE9CC"];
+
+  Client [label="Client (Main)", fillcolor="#E8F5E3"];
+
+  Circle -> Shape [arrowhead=empty];
+  Square -> Shape [arrowhead=empty];
+  Vector -> Renderer [arrowhead=empty, style=dashed];
+  Raster -> Renderer [arrowhead=empty, style=dashed];
+
+  Shape -> Renderer [dir=both, arrowtail=odiamond, arrowhead=open, label="  bridge (composition)\n  renderer", color="#C0392B", fontcolor="#C0392B", penwidth=2];
+  Client -> Shape [style=dashed, arrowhead=open, label=" uses"];
+  Client -> Renderer [style=dashed, arrowhead=open, label=" picks at runtime"];
+
+  {rank=same; Circle; Square}
+  {rank=same; Vector; Raster}
+}
