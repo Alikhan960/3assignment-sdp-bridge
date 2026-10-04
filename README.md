@@ -1,6 +1,6 @@
 # Bridge Pattern — Shape × Renderer (Java 17)
 
-Assignment #3, ShP-2216 *Software Design Patterns*, Astana IT University.
+Assignment #3
 
 The **Bridge** pattern splits one class hierarchy into two that can change independently, connected by composition:
 
